@@ -5,7 +5,7 @@ from translator import translate
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'images'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -25,7 +25,7 @@ def index():
         
         if file:
             # Save the uploaded file
-            image_path = os.path.join('uploads', file.filename)
+            image_path = os.path.join('images', file.filename)
             file.save(image_path)
             
             # Perform OCR on the uploaded image
