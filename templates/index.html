@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR and Translation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #eeeeee;
+            text-align: center;
+        }
+        h1 {
+            color: #710193;
+            margin-top: 50px;
+        }
+        .file-upload {
+            background-color: #ffffff;
+            width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-upload-wrap {
+            border: 4px dashed #E39FF6;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .image-upload-wrap:hover {
+            background-color: #B65FCF;
+            border-color: white;
+        }
+        .drag-text h3 {
+            font-weight: bold;
+            color: #710193;
+        }
+        .file-upload-btn {
+            width: 100%;
+            color: white;
+            background: #710193;
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .file-upload-btn:hover {
+            background: #9867C5;
+        }
+        #image-preview {
+            margin-top: 20px;
+            display: none;
+        }
+        #image-preview img {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 8px;
+            border: 2px solid #710193;
+        }
+        .custom-file-input {
+            margin-top: 10px;
+            display: inline-block;
+            background-color: #ffffff;
+            color: #710193;
+            border: 2px solid #710193;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .custom-file-input:hover {
+            background-color: #710193;
+            color: white;
+        }
+        #upload-input {
+            display: none; /* Hide default input */
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-upload">
+            <!-- Drag and Drop Area -->
+            <div class="image-upload-wrap" id="drop-area">
+                <div class="drag-text">
+                    <h3>Drag and drop an image here</h3>
+                </div>
+            </div>
+
+            <!-- Custom "Choose File" Button -->
+            <label for="upload-input" class="custom-file-input">Choose File</label>
+            <input type="file" name="file" accept="image/*" id="upload-input">
+
+            <!-- Image Preview -->
+            <div id="image-preview">
+                <h3>Selected Image:</h3>
+                <img id="preview-img" src="">
+            </div>
+
+            <input type="submit" value="Upload" class="file-upload-btn">
+        </div>
+    </form>
+
+    <script>
+        const fileInput = document.getElementById("upload-input");
+        const dropArea = document.getElementById("drop-area");
+        const previewImage = document.getElementById("preview-img");
+        const imagePreview = document.getElementById("image-preview");
+
+        fileInput.addEventListener("change", handleFileSelect);
+        dropArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropArea.style.backgroundColor = "#B65FCF";
+        });
+
+        dropArea.addEventListener("dragleave", () => {
+            dropArea.style.backgroundColor = "";
+        });
+
+        dropArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropArea.style.backgroundColor = "";
+            const file = e.dataTransfer.files[0];
+            fileInput.files = e.dataTransfer.files;
+            handleFileSelect({ target: { files: [file] } });
+        });
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    imagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
