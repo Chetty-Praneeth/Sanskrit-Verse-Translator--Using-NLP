@@ -39,9 +39,16 @@ Ensure you have the following installed on your system:
 
 
 ### Output:
-<img src="outputs/1.png" width="250">
-<img src="outputs/2.png" width="250">
-<img src="outputs/3.png" width="500">
+<table>
+  <tr>
+    <td><img src="outputs/1.png" width="250"></td>
+    <td><img src="outputs/2.png" width="250"></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="outputs/3.png" width="500"></td>
+  </tr>
+</table>
+
 
 ### Usage
 1. Run the Flask application:
