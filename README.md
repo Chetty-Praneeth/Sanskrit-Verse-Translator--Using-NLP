@@ -41,11 +41,11 @@ Ensure you have the following installed on your system:
 ### Output:
 <table>
   <tr>
-    <td><img src="outputs/1.png" width="250"></td>
-    <td><img src="outputs/2.png" width="250"></td>
+    <td><img src="outputs/1.png" width="500"></td>
+    <td><img src="outputs/2.png" width="500"></td>
   </tr>
   <tr>
-    <td colspan="2"><img src="outputs/3.png" width="500"></td>
+    <td colspan="2"><img src="outputs/3.png" width="750"></td>
   </tr>
 </table>
 
